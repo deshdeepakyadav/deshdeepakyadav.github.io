@@ -7,18 +7,671 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  .timeline {
+  list-style: none;
+  padding: 20px 0 20px;
+  position: relative;
+}
+.timeline:before {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 3px;
+  background-color: #eeeeee;
+  left: 50%;
+  margin-left: -1.5px;
+}
+.timeline > li {
+  margin-bottom: 20px;
+  position: relative;
+}
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+.timeline > li:after {
+  clear: both;
+}
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+.timeline > li:after {
+  clear: both;
+}
+.timeline > li > .timeline-panel {
+  width: 46%;
+  float: left;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+.timeline > li > .timeline-panel:before {
+  position: absolute;
+  top: 26px;
+  right: -15px;
+  display: inline-block;
+  border-top: 15px solid transparent;
+  border-left: 15px solid #ccc;
+  border-right: 0 solid #ccc;
+  border-bottom: 15px solid transparent;
+  content: " ";
+}
+.timeline > li > .timeline-panel:after {
+  position: absolute;
+  top: 27px;
+  right: -14px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #fff;
+  border-right: 0 solid #fff;
+  border-bottom: 14px solid transparent;
+  content: " ";
+}
+.timeline > li > .timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.3rem;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+.timeline > li.timeline-inverted > .timeline-panel {
+  float: right;
+}
+.timeline > li.timeline-inverted > .timeline-panel:before {
+  border-left-width: 0;
+  border-right-width: 15px;
+  left: -15px;
+  right: auto;
+}
+.timeline > li.timeline-inverted > .timeline-panel:after {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
+}
+.timeline-badge.primary {
+  background-color: #2e6da4 !important;
+}
+.timeline-badge.success {
+  background-color: #3f903f !important;
+}
+.timeline-badge.warning {
+  background-color: #f0ad4e !important;
+}
+.timeline-badge.danger {
+  background-color: #d9534f !important;
+}
+.timeline-badge.info {
+  background-color: #5bc0de !important;
+}
+.timeline-title {
+  margin-top: 0;
+  color: inherit;
+}
+.timeline-body > p,
+.timeline-body > ul {
+  margin-bottom: 0;
+}
+.timeline-body > p + p {
+  margin-top: 5px;
+}
+
+.ptimeline {
+  display: flex;
+  flex-direction: column;
+ 
+  margin: 1% auto;
+}
+.ptimeline__event {
+  background: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+.ptimeline__event__title {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9251ac;
+  letter-spacing: 1.5px;
+}
+.ptimeline__event__content {
+  padding: 20px;
+}
+.ptimeline__event__date {
+  color: #f6a4ec;
+  font-size: 1.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ptimeline__event__icon {
+  border-radius: 8px 0 0 8px;
+  background: #9251ac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 40%;
+  font-size: 2rem;
+  color: #9251ac;
+  padding: 20px;
+}
+.ptimeline__event__icon i {
+  position: absolute;
+  top: 50%;
+  left: -65px;
+  font-size: 2.5rem;
+  transform: translateY(-50%);
+}
+.ptimeline__event__description {
+  flex-basis: 60%;
+}
+.ptimeline__event:after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: #9251ac;
+  position: absolute;
+  top: 52%;
+  left: -3.5rem;
+  z-index: -1;
+}
+.ptimeline__event:before {
+  content: "";
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  background: #f6a4ec;
+  border-radius: 100%;
+  left: -6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid #9251ac;
+}
+.ptimeline__event--type2:before {
+  background: #87bbfe;
+  border-color: #555ac0;
+}
+.ptimeline__event--type2:after {
+  background: #555ac0;
+}
+.ptimeline__event--type2 .ptimeline__event__date {
+  color: #87bbfe;
+}
+.ptimeline__event--type2 .ptimeline__event__icon {
+  background: #555ac0;
+  color: #555ac0;
+}
+.ptimeline__event--type2 .ptimeline__event__title {
+  color: #555ac0;
+}
+.ptimeline__event--type3:before {
+  background: #aff1b6;
+  border-color: #24b47e;
+}
+.ptimeline__event--type3:after {
+  background: #24b47e;
+}
+.ptimeline__event--type3 .ptimeline__event__date {
+  color: #aff1b6;
+}
+.ptimeline__event--type3 .ptimeline__event__icon {
+  background: #24b47e;
+  color: #24b47e;
+}
+.ptimeline__event--type3 .ptimeline__event__title {
+  color: #24b47e;
+}
+.ptimeline__event:last-child:after {
+  content: none;
+}
+
+@media (max-width: 786px) {
+  .ptimeline__event {
+    flex-direction: column;
+  }
+
+  .ptimeline__event__icon {
+    border-radius: 4px 4px 0 0;
+  }
+  html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 500px) {
+.xs-hide{display:none}
+}
+  </style>
 </head>
 <body>
 
-<div class="container-fluid">
-  <h1>Hello Desh!</h1>
-  <p>Resize the browser window to see the effect.</p>
-  <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p>
-  <div class="row">
-    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-    <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
-    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+<div class="container">
+ 
+   <div class="row">
+   
+	<div class="col-sm-12" >
+	<nav class="navbar navbar-fixed-top container" style="background-color:#fff">
+			<div class="navbar-header">
+			  <h1>Desh Deepak Yadav</h1>
+				<h6><em>UI Developer, Architect & Technical Manager</em></h6>
+			</div>
+			<ul class="nav navbar-nav navbar-right xs-hide">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li><a href="#About">About Me</a></li>
+			  <li><a href="#Education">Education</a></li>
+			  <li><a href="#WorkExperience">Work Experience</a></li>
+			  <li><a href="#Skills">Skills</a></li>
+			  <li><a href="#Protfolio">Portfolio</a></li>
+			</ul>
+
+	</nav>
+	</div>
   </div>
+   <div class="row" style="margin-top:100px">
+    <div class="col-sm-12" style="background-color:lavender;"></div>
+  </div>
+   <div class="row" >
+    <div class="col-sm-9">
+		<h3 id="Education">About Me</h3>
+		<p style="text-align:justify">Highly impassioned about computer programming, progressive learner and a customer centric result oriented professional with 14 years of experience in software development industry, have proven record of project deliveries - on time and with utmost quality, excellent track record of building, architecting and delivering highly reliable and scalable system/ software across a various domain and technology. Well experienced in hiring and training IT Team staff, providing guidance and insight, delegating technical responsibilities, monitoring project progress, overseeing user testing, reviewing all produced works, and conducting regular status meetings.</p>
+	 <div class="row">
+		<div class="col-sm-12" >
+		<h3 >Educational Qualification</h3>
+		<div class="row">
+		<div class="col-sm-1" ><img src="./images/bits.png" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Master of Technology (Pursuing) (2021 -2022)<br/>
+		Software Engineering<br/>
+		Birla Institute of Technology & Science, Pilani</p>
+		</div>
+		<div class="col-sm-1" ><img src="./images/rmlau.png" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Bachelor of Technology (2002 -2006)<br/>
+		Information Technology<br/>
+		Institute of Engineering &amp; Technology, Faizabad</p>
+		</div>
+		</div>
+		<br/>
+		<div class="row" >
+		<div class="col-sm-1" ><img src="./images/harvard.jpg" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Online Certification (2020 -2021)<br/>
+		Computer Science in Web Programming <br/>
+		Harvard University</p>
+		</div>
+		<div class="col-sm-1" ><img src="./images/safe.png" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Certified SAFe® 4 Certification<br/>
+		Product Owner/Product Manager <br/>
+		Issuing authority Scaled Agile, Inc.</p>
+		</div>
+		</div>
+		<br/>
+		<div class="row" id="WorkExperience">
+		<div class="col-sm-1" ><img src="./images/aws.png" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Certified AWS Cloud Practitioner<br/>
+		Issuing authority Amazon Web Services (AWS)</p>
+		</div>
+		<div class="col-sm-1" ><img src="./images/azure.png" width="70" height="70" /></div>
+		<div class="col-sm-5" >
+		<p>
+		Certified Azure Fundamentals<br/>
+		Issuing authority Microsoft Azure</p>
+		</div>
+		</div>
+		
+		</div>
+	  
+	  </div>
+	   <div class="row">
+		<div class="col-sm-12" >
+			<h3 >Work Experience</h3>
+
+    <ul class="timeline">
+        <li>
+          <div class="timeline-badge danger">2017</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Technical Manager</h4>
+            </div>
+            <div class="timeline-body">
+              <p>Tech Mahindra Americas Inc.<br/>
+			  Bellevue WA, USA
+			  </p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning">2013</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Project Lead</h4>
+            </div>
+            <div class="timeline-body">
+              <p>Tech Mahindra Ltd. <br/>
+			  Noida, Uttar Pradesh, India
+			  </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge danger">2012</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Team Lead</h4>
+            </div>
+            <div class="timeline-body">
+              <p>eCentric Solution Pvt Ltd. <br/>
+				New Delhi, India
+			  </p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning">2010</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Sr. Programmer</h4>
+            </div>
+            <div class="timeline-body">
+              <p>IAP Co Ltd.<br/>
+				New Delhi, India
+			  </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge info">2008</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Sr. Programmer</h4>
+            </div>
+            <div class="timeline-body">
+              <p>eMaven Solutions Pvt. Ltd. .<br/>
+				New Delhi, India
+			  </p>
+             
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted" >
+          <div class="timeline-badge success">2006</div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Programmer Trainee</h4>
+            </div>
+            <div class="timeline-body" id="Skills">
+             <p>eMaven Solutions Pvt. Ltd. .<br/>
+				New Delhi, India
+			  </p>
+            </div>
+          </div>
+        </li>
+    </ul>
+
+		</div>
+	   </div>
+	</div>
+    <div class="col-sm-3" style="padding: 5px;text-align:center;">
+		<img src="./images/desh.png" width="65%" height="180" class="xs-hide"/>
+	 <div class="row xs-hide">
+		<div class="col-sm-12" style="padding: 5px;text-align:center;" >
+		<div style="width:70%;margin-left:25%;text-align:left;">
+		<p> <span class="glyphicon glyphicon-map-marker"></span> Bellevue, WA USA</p>
+		<p><span class="glyphicon glyphicon-earphone"></span> +1 (972)-343-8094</p>
+		<p><span class="glyphicon glyphicon-envelope"></span> deshdeepak@gmail.com</p>
+		<p><img src="./images/linkden.png" width="15" height="15" style="margin-top:-5px"/> in/deshdeepakyadav</p>
+		<p><img src="./images/git.png" width="15" height="15" style="margin-top:-5px"/> /deshdeepakyadav</p>
+		</div>
+		</div>
+	</div>
+	 <div class="row">
+		<div class="col-sm-12" style="width:100%;text-align:left;" >
+		<h3 style="margin-left:15%;text-align:left;">Work Expertise</h3>
+			<ul>
+			<li>Team and Project Management</li>
+			<li>Scrum &amp; Agile usedto</li>
+			<li>MS Word, Excel, PowerPoint</li>
+			<li>Responsive Design, Web architecture</li>
+			<li>Leadership, Team Mentoring</li>
+			<li>object-oriented design, data structures</li>
+			<li>algorithm design, problem solving</li>
+			<li>UI Architecting, CI/CD knowledge</li>
+			<li>Persona creation and work flow designs</li>
+			</ul>
+			
+		</div>
+	</div>
+	 <div class="row xs-hide">
+		<div class="col-sm-12" style="width:70%;margin-left:15%;text-align:left;" >
+		<h3>Language</h3>
+			<p><img src="./images/hindi.png" width="20" height="15" style="margin-top:-5px"/> Hindi</p>
+			<p><img src="./images/english.png" width="20" height="15" style="margin-top:-5px"/> English</p>
+			
+		</div>
+	</div>
+	 <div class="row xs-hide">
+		<div class="col-sm-12" style="width:100%;text-align:center;" >
+		<h3 style="margin-left:20%;text-align:left;">Achievement</h3>
+			<p><img src="./images/standing-ovation.png" width="120" height="100" style="margin-top:-5px"/></p><br/>
+			<p><img src="./images/bravo.png" width="120" height="100" style="margin-top:-5px"/></p><br/>
+			<p><img src="./images/pob.png" width="100" height="100" style="margin-top:-5px"/></p>
+			
+		</div>
+	</div>
+	</div>
+  </div>
+ 
+  <div class="row ">
+  	<h3>Professional Skills</h3>
+	 <div class="row ">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>HTML</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 99%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>CSS</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>Javascript</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>Typescript</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>Bootstraps</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>JQuery</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>Angular</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>React</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>NodeJS</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>Python</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="Protfolio">
+	     <div class="col-sm-12">
+			<div class="col-sm-6">
+			<h6>AWS</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+			<div class="col-sm-6" >
+			<h6>Azure</h6>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+  </div>
+  
+  <div class="row" >
+  	<h3>Work Portfolio</h3>
+		 <div class="row">
+			 <div class="col-sm-12">
+			 <div class="ptimeline" style="width:80%">
+  <div class="ptimeline__event  animated fadeInUp delay-3s ptimeline__event--type1">
+    <div class="ptimeline__event__icon ">
+      <i class="lni-cake"></i>
+      <div class="ptimeline__event__date">
+      <img src="./images/T-Mobile.png" width="120" height="30"/>
+      </div>
+    </div>
+    <div class="ptimeline__event__content ">
+      <div class="ptimeline__event__title">
+        RIS (Retail Inventory Serialization) <em>(2017-2020)</em>
+      </div>
+      <div class="ptimeline__event__description">
+        <p>T-Mobile has embarked on a transformation program “RIS – Retail Inventory Serialization” to fulfill the strategic requirements inventory visibility across the retail stores and transform the inventory traceability. <br/>
+		<strong>Contributed as:</strong> UI Architect & Lead Developer 
+</p>
+      </div>
+    </div>
+  </div>
+  <div class="ptimeline__event animated fadeInUp delay-2s ptimeline__event--type2">
+    <div class="ptimeline__event__icon">
+      <i class="lni-burger"></i>
+      <div class="ptimeline__event__date">
+         <img src="./images/att.png" width="120" height="50"/>
+      </div>
+    </div>
+    <div class="ptimeline__event__content">
+      <div class="ptimeline__event__title">
+        ATT User Experience <em>(2013-2017)</em>
+      </div>
+      <div class="ptimeline__event__description">
+        <p>User Experience project had created for to provide front end support to all major project umbrellas. In this project POD provide us wireframe/comps and we convert all in actual html code with proper CATO testing. <br/>
+		<strong>Contributed as:</strong> UI Architect & Lead Developer </p>
+      </div>
+    </div>
+  </div>
+  <div class="ptimeline__event animated fadeInUp delay-1s ptimeline__event--type3">
+    <div class="ptimeline__event__icon">
+      <i class="lni-slim"></i>
+      <div class="ptimeline__event__date">
+       <img src="./images/cpao.png" width="120" height="40"/>
+      </div>
+    </div>
+    <div class="ptimeline__event__content">
+      <div class="ptimeline__event__title">
+        PGMIS (Pensioner’s Grievances Monitoring Information system) <em>(2010-2013)</em>
+
+      </div>
+      <div class="ptimeline__event__description">
+        <p>It is an online computerized system which has been developed with an objective of speedy redress and effective monitoring of the grievances besides providing a fast access to the pensioners.<br/>
+		<strong>Contributed as:</strong> Team Lead </p>
+      </div>
+
+    </div>
+  </div>
+  <div class="ptimeline__event animated fadeInUp ptimeline__event--type1">
+    <div class="ptimeline__event__icon">
+      <i class="lni-cake"></i>
+      <div class="ptimeline__event__date">
+        <img src="./images/img.png" width="120" height="50"/>
+      </div>
+    </div>
+    <div class="ptimeline__event__content">
+      <div class="ptimeline__event__title">
+        Lakme Fashion Week <em>(2008-2010)</em>
+      </div>
+      <div class="ptimeline__event__description">
+        <p>This Project is related to fashion web portal and totally based on content management system. On which admin can enter content through backend panel and data easily available on front end side.<br/>
+		<strong>Contributed as:</strong> Sr. Programmer </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+			 </div>
+		</div>
+	</div>
 </div>
 
 </body>
